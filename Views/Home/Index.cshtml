@@ -1,0 +1,124 @@
+﻿@model List<FinlandCasinoHotels.Models.HotelCard>
+@{
+    ViewData["Title"] = "Home";
+    var featured = Model.First();
+    var others = Model.Skip(1).ToList();
+}
+
+<section class="hero hero-image" style="background-image: url('/images/hero.jpg');">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+        <span class="hero-badge">Netherlands · Casino Resorts</span>
+        <h1>Top <em>NL</em> Casino Resorts</h1>
+        <p class="lead">
+            Discover the finest casino hotels across the Netherlands — from Scheveningen's historic seaside halls
+            to Amsterdam's canal-side gaming lounges and Rotterdam's modern waterfront stays.
+        </p>
+        <div class="hero-actions">
+            <a class="btn btn-accent" asp-action="Contact">Plan Your Stay</a>
+            <a class="btn btn-outline-light" asp-action="About">About Us</a>
+        </div>
+        <div class="destinations-strip">
+            <div class="destination-pill"><strong>Amsterdam</strong> Canal hotels</div>
+            <div class="destination-pill"><strong>The Hague</strong> Seaside resorts</div>
+            <div class="destination-pill"><strong>Rotterdam</strong> Harbour stays</div>
+            <div class="destination-pill"><strong>Maastricht</strong> River lodges</div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">Featured Resort</span>
+            <h2>Our Top Pick in the Netherlands</h2>
+            <p class="section-intro">Handpicked for location, gaming quality, and the full resort experience Dutch travellers expect.</p>
+        </div>
+
+        <article class="resort-featured">
+            <div class="resort-featured-image">
+                <img src="@featured.ImageUrl" alt="@featured.Name" loading="lazy" />
+            </div>
+            <div class="resort-featured-body">
+                <span class="resort-meta">@featured.Location</span>
+                <h3>@featured.Name</h3>
+                <p>@featured.Description</p>
+                <div class="amenity-tags">
+                    @foreach (var amenity in featured.Amenities)
+                    {
+                        <span class="amenity-tag">@amenity</span>
+                    }
+                </div>
+                <a class="btn btn-accent mt-3" asp-action="Contact">Request Details</a>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">More Destinations</span>
+            <h2>Explore Dutch Casino Hotels</h2>
+        </div>
+
+        <div class="resort-grid">
+            @foreach (var hotel in others)
+            {
+                <article class="resort-card">
+                    <div class="resort-card-image">
+                        <img src="@hotel.ImageUrl" alt="@hotel.Name" loading="lazy" />
+                    </div>
+                    <div class="resort-card-body">
+                        <span class="resort-meta">@hotel.Location</span>
+                        <h3>@hotel.Name</h3>
+                        <p>@hotel.Description</p>
+                        <div class="amenity-tags">
+                            @foreach (var amenity in hotel.Amenities)
+                            {
+                                <span class="amenity-tag">@amenity</span>
+                            }
+                        </div>
+                    </div>
+                </article>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">Why Us</span>
+            <h2>What Makes a Great NL Casino Resort</h2>
+        </div>
+        <div class="info-grid">
+            <div class="info-block">
+                <h3>Prime Locations</h3>
+                <p>Resorts in Amsterdam, Scheveningen, Rotterdam, and Limburg — close to culture, coast, and city life.</p>
+            </div>
+            <div class="info-block">
+                <h3>Licensed Gaming</h3>
+                <p>Properties connected to Holland Casino or KSA-regulated venues with fair play and professional staff.</p>
+            </div>
+            <div class="info-block">
+                <h3>Resort Comfort</h3>
+                <p>Quality rooms, on-site dining, spas, and concierge service for a complete stay beyond the gaming floor.</p>
+            </div>
+            <div class="info-block">
+                <h3>Responsible Play</h3>
+                <p>All venues welcome guests aged 18+ with self-exclusion tools and support from Cruks and Loket Kansspel.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container">
+        <div class="cta-box">
+            <h2>Ready to Visit the Netherlands?</h2>
+            <p>Get in touch for resort recommendations, availability guidance, or general questions about Dutch casino hotels.</p>
+            <a class="btn btn-accent" asp-action="Contact">Contact Us</a>
+        </div>
+    </div>
+</section>

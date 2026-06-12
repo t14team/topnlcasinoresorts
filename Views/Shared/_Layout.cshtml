@@ -1,0 +1,87 @@
+﻿@{
+    var site = SiteSettingsOptions.Value;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Top NL Casino Resorts — the best casino hotels in the Netherlands. Amsterdam, Scheveningen, Rotterdam &amp; Maastricht. Guests 18+." />
+    <link rel="canonical" href="@(site.SiteUrl)@(Context.Request.Path)" />
+    <title>@ViewData["Title"] - Top NL Casino Resorts</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/FinlandCasinoHotels.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">Top <span>NL</span> Casino Resorts</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <p class="footer-brand">Top NL Casino Resorts</p>
+                    <p class="footer-desc">Your guide to the Netherlands' finest casino hotels — curated stays in Amsterdam, The Hague, Rotterdam, and beyond.</p>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <h6 class="footer-heading">Pages</h6>
+                    <ul class="footer-links">
+                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-controller="Home" asp-action="About">About</a></li>
+                        <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+                        <li><a asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <h6 class="footer-heading">Contact</h6>
+                    <ul class="footer-contact">
+                        <li>Keizersgracht 482</li>
+                        <li>1017 EG Amsterdam, Netherlands</li>
+                        <li>+31 20 555 0147</li>
+                        <li>@site.ContactEmail</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; @DateTime.Now.Year <a href="@site.SiteUrl">@site.Domain</a>. All rights reserved.</p>
+                <p class="footer-disclaimer">Gambling is for guests aged 18 and over. Please play responsibly. KSA-regulated venues only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
